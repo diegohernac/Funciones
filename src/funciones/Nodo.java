@@ -1,6 +1,6 @@
 package funciones;
 
-public class Nodo implements Comparable<Nodo> {
+public class Nodo{
 	private String dato;
 	private Nodo izq, der;
 	
@@ -14,18 +14,6 @@ public class Nodo implements Comparable<Nodo> {
 		this.izq=izq;
 	}
 	
-	public int compareTo(Nodo nodo){
-		if(Expresion.esOperador(this.dato)){
-			if(Expresion.esOperando(nodo.dato))
-				return 1; //der
-			if(Expresion.esOperadorBinario(nodo.dato))
-				return -1; //iz
-		}
-		if(Expresion.esOperando(this.dato)){
-			return 1;
-		}
-		return 0; //nodo
-	}
 	
 	public String getDato(){
 		return dato;
