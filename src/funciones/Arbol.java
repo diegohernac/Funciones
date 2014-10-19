@@ -18,4 +18,12 @@ public class Arbol implements InterfazArbol {
 	public void unir(String expresion, Arbol izq, Arbol der){
 		this.raiz = new Nodo(expresion, izq.raiz, der.raiz);
 	}
+	
+	public void mostrarInOrden(){
+		if(raiz!=null){
+			raiz.InOrden();
+		}
+		else
+			System.out.println("Arbol vacio");
+	}
 }

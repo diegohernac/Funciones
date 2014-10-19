@@ -51,14 +51,15 @@ public class Funcion {
 		arbol = operandos.get(operandos.size()-1);
 		
 		
-		System.out.println(operandos.size());
-		
 	}
 	
+	public void mostar(){
+		arbol.mostrarInOrden();
+	}
 
 	
 	public static void main(String[] args) {
 		Funcion f = new Funcion("funcion.in");
-		
+		f.mostar();
 	}
 }

@@ -14,6 +14,15 @@ public class Nodo{
 		this.izq=izq;
 	}
 	
+	public void InOrden(){
+		if(izq!=null){
+			izq.InOrden();
+		}
+		System.out.print(dato + " ");
+		if(der!=null){
+			der.InOrden();
+		}
+	}
 	
 	public String getDato(){
 		return dato;
