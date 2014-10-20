@@ -1,21 +1,21 @@
 package funciones;
 
 public class Nodo{
-	private String dato;
+	private String expresion;
 	private Nodo izq, der;
 	
 	public Nodo(){
 		this(null, null, null);
 	}
 	
-	public Nodo(String dato, Nodo izq, Nodo der){
-		this.dato=dato;
+	public Nodo(String expresion, Nodo izq, Nodo der){
+		this.expresion=expresion;
 		this.der=der;
 		this.izq=izq;
 	}
 	
-	public Nodo(String dato, Nodo izq){
-		this.dato=dato;
+	public Nodo(String expresion, Nodo izq){
+		this.expresion=expresion;
 		this.der=null;
 		this.izq=izq;
 	}
@@ -24,18 +24,18 @@ public class Nodo{
 		if(izq!=null){
 			izq.InOrden();
 		}
-		System.out.print(dato + " ");
+		System.out.print(expresion + " ");
 		if(der!=null){
 			der.InOrden();
 		}
 	}
 	
 	public String getDato(){
-		return dato;
+		return expresion;
 	}
 	
 	public String toString(){
-		return dato;
+		return expresion;
 	}
 
 	public Nodo getIzq() {
@@ -47,22 +47,22 @@ public class Nodo{
 	}
 	
 	public Double evaluar(Punto punto){
-		if(Expresion.esOperador(dato)){
-			if(Expresion.esOperadorBinario(dato)){
+		if(Expresion.esOperador(expresion)){
+			if(Expresion.esOperadorBinario(expresion)){
 				if(izq!=null && der!=null){
-					return Expresion.calcular(dato,izq.evaluar(punto) ,der.evaluar(punto));
+					return Expresion.calcular(expresion,izq.evaluar(punto) ,der.evaluar(punto));
 				}
 			}
-			if(Expresion.esOperadorUnario(dato)){
+			if(Expresion.esOperadorUnario(expresion)){
 				if(izq!=null){
-					return Expresion.calcular(dato,izq.evaluar(punto));
+					return Expresion.calcular(expresion,izq.evaluar(punto));
 				}
 			}
 		}
-		if(Expresion.esVariable(dato)){
-			
+		if(Expresion.esVariable(expresion)){
+			return Expresion.getVariable(expresion, punto);
 		}
-		return Double.parseDouble(dato);
+		return Double.parseDouble(expresion);
 	}
 	
 }
