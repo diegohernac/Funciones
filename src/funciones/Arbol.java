@@ -19,11 +19,19 @@ public class Arbol implements InterfazArbol {
 		this.raiz = new Nodo(expresion, izq.raiz, der.raiz);
 	}
 	
+	public void unir(String expresion, Arbol izq){
+		this.raiz = new Nodo(expresion, izq.raiz);
+	}
+	
 	public void mostrarInOrden(){
 		if(raiz!=null){
 			raiz.InOrden();
 		}
 		else
 			System.out.println("Arbol vacio");
+	}
+	
+	public Double evaluar(Punto punto){
+		return raiz.evaluar(punto);
 	}
 }

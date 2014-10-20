@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 
 public class Funcion {
-	
+	ArrayList<Punto> puntos;
 	private Arbol arbol;
 	
 	public Funcion(String nombre){
 		ArrayList<String> expresion;
 		ArrayList<Arbol> operandos;
+		puntos = new ArrayList<Punto>();
 		expresion = new ArrayList<String>();
 		operandos = new ArrayList<Arbol>();
 		LeerArchivo archivoIn = new LeerArchivo(nombre);
@@ -37,7 +38,7 @@ public class Funcion {
 				}
 				if(Expresion.esOperadorUnario(expresion.get(i))){
 					Arbol arbolParcial = new Arbol();
-					arbolParcial.unir(expresion.get(i), operandos.get(operandos.size()-1), null);
+					arbolParcial.unir(expresion.get(i), operandos.get(operandos.size()-1));
 					operandos.remove(operandos.size()-1);
 					operandos.add(arbolParcial);
 				}
@@ -51,7 +52,12 @@ public class Funcion {
 		arbol = operandos.get(operandos.size()-1);
 		
 		
+		
 	}
+	
+	public Double evaluar(Punto punto){
+		return arbol.evaluar(punto);
+	}	
 	
 	public void mostar(){
 		arbol.mostrarInOrden();
@@ -60,6 +66,7 @@ public class Funcion {
 	
 	public static void main(String[] args) {
 		Funcion f = new Funcion("funcion.in");
-		f.mostar();
+		
+		System.out.println(f.evaluar(new Punto()));
 	}
 }

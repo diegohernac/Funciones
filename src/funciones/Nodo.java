@@ -14,6 +14,12 @@ public class Nodo{
 		this.izq=izq;
 	}
 	
+	public Nodo(String dato, Nodo izq){
+		this.dato=dato;
+		this.der=null;
+		this.izq=izq;
+	}
+	
 	public void InOrden(){
 		if(izq!=null){
 			izq.InOrden();
@@ -40,6 +46,23 @@ public class Nodo{
 		return der;
 	}
 	
-	
+	public Double evaluar(Punto punto){
+		if(Expresion.esOperador(dato)){
+			if(Expresion.esOperadorBinario(dato)){
+				if(izq!=null && der!=null){
+					return Expresion.calcular(dato,izq.evaluar(punto) ,der.evaluar(punto));
+				}
+			}
+			if(Expresion.esOperadorUnario(dato)){
+				if(izq!=null){
+					return Expresion.calcular(dato,izq.evaluar(punto));
+				}
+			}
+		}
+		if(Expresion.esVariable(dato)){
+			
+		}
+		return Double.parseDouble(dato);
+	}
 	
 }
